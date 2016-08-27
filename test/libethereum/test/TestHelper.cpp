@@ -1093,23 +1093,7 @@ bool TestOutputHelper::passTest(json_spirit::mObject& _o, std::string& _testName
 
 void testMiningFunc(void(*_testFunc)())
 {
-	bool success = false;
-	int timeout = Options::get().testMiningTimeout;
-	for (int i=0; i<3; i++)
-	{
-		std::thread threadTest(_testFunc);
-		auto future = std::async(std::launch::async, &std::thread::join, &threadTest);
-		if (future.wait_for(std::chrono::seconds(timeout)) == std::future_status::timeout)
-			cerr << "Mining timeout! Trying again...";
-		else
-		{
-			success = true;
-			break;
-		}
-	}
-
-	if (!success)
-		BOOST_ERROR("Mining Timeout!");
+	_testFunc();
 }
 
 } } // namespaces
