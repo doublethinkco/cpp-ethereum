@@ -53,6 +53,10 @@
 
 #include <cryptopp/sha3.h>
 
+#if defined(__GNUC__)
+  	#pragma GCC diagnostic pop
+#endif // defined(__GNUC__)
+
 extern "C" {
 struct ethash_h256;
 typedef struct ethash_h256 ethash_h256_t;
