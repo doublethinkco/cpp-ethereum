@@ -151,13 +151,6 @@ if (("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR ("${CMAKE_CXX_COMPILER_ID}" MA
 			# into errors, which makes sense.
 			# http://stackoverflow.com/questions/21617158/how-to-silence-unused-command-line-argument-error-with-clang-without-disabling-i
 			add_compile_options(-Qunused-arguments)
-
-			# Blanket suppression of deprecation warnings occurring in ethash for CryptoPP HEAD.
-			# This is in addition to the targeted pragmas already added in
-			# libethash/sha3_crypto.cpp which are working for the GCC 5.x but seemingly
-			# failing for GCC 4.8.x.
-			add_compile_options(-Wno-deprecated-declarations)
-
 		endif()
 
 		if (EMSCRIPTEN)
